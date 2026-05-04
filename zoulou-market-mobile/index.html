@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#111111">
+  <title>Zoulou Market Mobile</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="phone-shell">
+    <section class="app-screen" aria-label="Zoulou Market mobile prototype">
+      <header class="app-header">
+        <button class="avatar-button" id="roleButton" type="button" aria-label="Changer de role">
+          <span id="avatarInitial">Y</span>
+        </button>
+        <div>
+          <p class="eyebrow">Zoulou Market</p>
+          <h1 id="pageTitle">Aujourd'hui</h1>
+        </div>
+        <button class="icon-button" id="quickActionButton" type="button" aria-label="Action rapide">
+          <span>+</span>
+        </button>
+      </header>
+
+      <div class="role-strip">
+        <span class="live-dot"></span>
+        <span id="roleLabel">Patron connecté</span>
+        <span id="syncLabel">Mode démo</span>
+        <strong id="currentTime">--:--</strong>
+      </div>
+
+      <section class="page active" id="page-home" data-title="Aujourd'hui">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="mini-label">Caisse actuelle</span>
+            <strong id="cashBalance">$0</strong>
+            <p id="cashSubtitle">Ventes, achats et ajustements inclus</p>
+          </div>
+          <div class="hero-meter">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="48"></circle>
+              <circle id="cashRing" cx="60" cy="60" r="48"></circle>
+            </svg>
+            <span id="cashPercent">72%</span>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <article class="stat-card">
+            <span>Ventes</span>
+            <strong id="salesCount">0</strong>
+          </article>
+          <article class="stat-card">
+            <span>CA</span>
+            <strong id="salesTotal">$0</strong>
+          </article>
+          <article class="stat-card warning">
+            <span>Stock bas</span>
+            <strong id="lowStockCount">0</strong>
+          </article>
+        </div>
+
+        <section class="section-block">
+          <div class="section-title-row">
+            <h2>Actions rapides</h2>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-tile" data-open="sell" type="button">
+              <span class="tile-icon">+</span>
+              <strong>Nouvelle vente</strong>
+              <small>Caisse rapide</small>
+            </button>
+            <button class="quick-tile" data-open="stock" type="button">
+              <span class="tile-icon">#</span>
+              <strong>Stock</strong>
+              <small>Produits & quantités</small>
+            </button>
+            <button class="quick-tile" id="resetDemo" type="button">
+              <span class="tile-icon">↻</span>
+              <strong>Reset demo</strong>
+              <small>Données test</small>
+            </button>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-title-row">
+            <h2>Dernière activité</h2>
+            <button class="text-button" data-open="activity" type="button">Tout voir</button>
+          </div>
+          <div class="activity-list compact" id="homeActivity"></div>
+        </section>
+      </section>
+
+      <section class="page" id="page-sell" data-title="Vente rapide">
+        <div class="search-panel">
+          <input id="productSearch" type="search" placeholder="Rechercher un produit">
+        </div>
+        <div class="category-scroll" id="categoryFilters"></div>
+        <div class="product-grid" id="productGrid"></div>
+
+        <aside class="cart-drawer" id="cartDrawer">
+          <div class="cart-handle"></div>
+          <div class="cart-head">
+            <div>
+              <span class="mini-label">Panier</span>
+              <strong id="cartCount">0 article</strong>
+            </div>
+            <button class="text-button" id="clearCart" type="button">Vider</button>
+          </div>
+          <div class="cart-lines" id="cartLines"></div>
+          <div class="cart-total">
+            <span>Total</span>
+            <strong id="cartTotal">$0</strong>
+          </div>
+          <button class="primary-button" id="checkoutButton" type="button">Encaisser</button>
+        </aside>
+      </section>
+
+      <section class="page" id="page-stock" data-title="Stock">
+        <div class="stock-summary">
+          <div>
+            <span class="mini-label">Inventaire</span>
+            <strong id="stockValue">$0</strong>
+            <p>Valeur estimée en prix de vente</p>
+          </div>
+          <button class="secondary-button" id="addStockButton" type="button">Ajouter</button>
+        </div>
+        <div class="search-panel">
+          <input id="stockSearch" type="search" placeholder="Filtrer le stock">
+        </div>
+        <div class="stock-list" id="stockList"></div>
+      </section>
+
+      <section class="page" id="page-team" data-title="Équipe">
+        <div class="team-banner">
+          <div>
+            <span class="mini-label">Présence</span>
+            <strong id="teamOnline">0 en service</strong>
+            <p>Vue rapide des membres actifs</p>
+          </div>
+        </div>
+        <div class="team-list" id="teamList"></div>
+      </section>
+
+      <section class="page" id="page-activity" data-title="Activité">
+        <div class="activity-list" id="activityList"></div>
+      </section>
+
+      <nav class="bottom-nav" aria-label="Navigation principale">
+        <button class="nav-button active" data-page="home" type="button"><span>⌂</span><small>Accueil</small></button>
+        <button class="nav-button" data-page="sell" type="button"><span>□</span><small>Vente</small></button>
+        <button class="nav-button" data-page="stock" type="button"><span>≡</span><small>Stock</small></button>
+        <button class="nav-button" data-page="team" type="button"><span>◌</span><small>Équipe</small></button>
+      </nav>
+    </section>
+  </main>
+
+  <dialog class="sheet-dialog" id="stockDialog">
+    <form method="dialog" class="sheet">
+      <div class="sheet-head">
+        <h2>Ajouter un produit</h2>
+        <button class="icon-button small" value="cancel" type="submit">×</button>
+      </div>
+      <label>Nom du produit<input id="newProductName" type="text" placeholder="Ex: Water"></label>
+      <label>Catégorie<input id="newProductCategory" type="text" placeholder="Boissons"></label>
+      <div class="field-row">
+        <label>Stock<input id="newProductQty" type="number" min="0" value="10"></label>
+        <label>Prix<input id="newProductPrice" type="number" min="0" value="25"></label>
+      </div>
+      <button class="primary-button" id="saveProductButton" value="cancel" type="submit">Ajouter au stock</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="app.js"></script>
+</body>
+</html>
